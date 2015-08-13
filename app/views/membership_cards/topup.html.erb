@@ -1,0 +1,9 @@
+<% provide(:title, '充值') %>
+<h1>This form is for <%= render 'users/user', user:@card.user %></h1>
+<%= form_tag(controller: "membership_cards", action:"topup", remote:true) do %>
+<%= hidden_field_tag :id, :value => @card.id %>
+<div><%= label_tag :topup %></div>
+<div><%= text_field_tag :topup, nil, :placeholder => "enter a number", class: 'form-control' %></div>
+<%= submit_tag "Top up" %>
+<% end %>
+<h1><%= link_to "回到用户列表",users_path %></h1>

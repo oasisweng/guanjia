@@ -1,0 +1,27 @@
+<%= link_to user.full_name + "," + user.phone_no + "," + user.status.first + "," + Level.find(user.membership_card.level_id).name, user_path(user) %>
+<%= user.membership_card.balance %>
+<%= link_to "充值", controller: "membership_cards", action: "prepare_topup", id: user.id %>
+<%= link_to "扣款", controller: "membership_cards", action: "prepare_pay", id: user.id %>
+<% if user.suspended %>
+  <%= link_to "解冻账户", {controller: "users",
+                          action: "toggle_suspension", 
+                          id: user.id},
+                          data: { confirm: "Are you sure?" },
+                          remote: true,
+                          :id => "suspend-" + user.id.to_s %>
+<% else %>
+  <% if user.status != "Admin" %>
+    <%= link_to "修改", edit_user_path(user) %>
+  <% end %>
+  <%= link_to "冻结账户", "/", :id => "suspend-" + user.id.to_s %>
+  <div class="hidden" id="suspend-<%= user.id %>-confirmation">
+    <%= form_for(user, url: toggle_suspension_user_path(user), method: :post, remote: true) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.hidden_field :id, :value => user.id %>
+      <%= f.label :suspension_reason, "冻结原因" %>
+      <%= f.text_field :suspension_reason, class: 'form-control' %>
+      <br>
+      <%= f.submit "确认冻结", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+<% end %>

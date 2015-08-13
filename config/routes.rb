@@ -1,9 +1,24 @@
+# -*- encoding : utf-8 -*-
 Rails.application.routes.draw do
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'users#index'
+  resources :users, except: :destroy do
+    member do 
+      get 'toggle_suspension'
+      post 'toggle_suspension'
+      patch 'toggle_suspension'
+    end
+
+    resources :contacts, shallow: true
+  end
+  get 'users/:id/topup' => "membership_cards#prepare_topup"
+  post 'users/:id/topup' => "membership_cards#topup", as: "user_topup"
+  get 'users/:id/pay' => "membership_cards#prepare_pay"
+  post 'users/:id/pay' => "membership_cards#pay", as:"user_pay"
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

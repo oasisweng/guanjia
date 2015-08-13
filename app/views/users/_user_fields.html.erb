@@ -1,0 +1,30 @@
+<%= render 'shared/error_messages', object: f.object %>
+<%= f.label :full_name, "姓名", class: 'required' %>
+<%= f.text_field :full_name, class: 'form-control' %>
+<br>
+<%= f.label :male, "称呼"%>
+<%= f.radio_button :male, 1, checked: true, class: 'form-control' %>
+<%= f.label :male, "先生", :value => true %>
+<%= f.radio_button :male, 0,  class: 'form-control' %>
+<%= f.label :male, "女士", :value => false %>
+<br>
+<%= f.label :phone_no, "电话号码", class: 'required'  %>
+<%= f.text_field :phone_no, class: 'form-control' %>
+<br>
+<%= f.label :wechat_id, "微信号" %>
+<%= f.text_field :wechat_id, class: 'form-control' %>
+<br>
+<%= f.label :status, "类别", class: 'required'  %>
+<%= f.select :status, "<option>Client</option><option>Staff</option><option>Manager</option>".html_safe, class: 'form-control' %>
+<br>
+<%= f.label :store_id, "隶属店铺" %>
+<%= f.select :store_id, Store.all.map{ |s| [s.name, s.id] }, class: 'form-control' %>
+<br>
+<%= f.fields_for :membership_card do |m| %>
+<%= m.label :balance, "初始金额" %>
+<%= m.text_field :balance, class: 'form-control' %>
+<br>
+<%= m.label :level_id, "会员卡等级" %>
+<%= m.select :level_id, options_from_collection_for_select(Level.all, 'id', 'name'), class: 'form-control' %>
+<br>
+<% end %>

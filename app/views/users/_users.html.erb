@@ -1,0 +1,5 @@
+<% @users.each do |user| %>
+  <div id="user-<%= user.id %>">
+    <%= render 'user', user: user %>
+  </div>
+<% end %>
