@@ -1,0 +1,29 @@
+<% provide(:title, '编辑用户') %>
+<h1>编辑用户</h1>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages', object: f.object %>
+      <%= f.label :full_name, "姓名" %>
+      <%= f.text_field :full_name, class: 'form-control' %>
+      <br>
+      <%= f.label :phone_no, "电话号码" %>
+      <%= f.text_field :phone_no, class: 'form-control' %>
+      <br>
+      <%= f.label :wechat_id, "微信号" %>
+      <%= f.text_field :wechat_id, class: 'form-control' %>
+      <br>
+      <%= f.label :status, "类别" %>
+      <%= f.select :status, options_for_select(["Client","Staff","Manager"],f.object.status), class: 'form-control' %>
+      <br>
+      <%= f.label :store_id, "隶属店铺" %>
+      <%= f.select :store_id, Store.all.map{ |s| [s.name, s.id] }, class: 'form-control' %>
+      <br>
+      <%= fields_for f.object.membership_card do |m| %>
+        <%= m.label :level_id, "会员卡等级" %>
+        <%= m.select :level_id, options_from_collection_for_select(Level.all, 'id', 'name',m.object.level_id), class: 'form-control' %>
+      <% end %>
+      <%= f.submit "Update", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

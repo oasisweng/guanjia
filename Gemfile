@@ -10,13 +10,25 @@ gem 'jbuilder',     '2.2.3'
 gem 'sdoc',         '0.4.0', group: :doc
 gem 'haml'
 gem 'bcrypt',       '3.1.7'
-gem 'ember-rails',  '0.19.0'
+gem 'will_paginate',  '3.0.7'
+gem 'responders'
+# gem 'ember-rails',  '0.19.0'
+# gem 'ember-source',  '1.13.5'
+gem 'faker',                   '1.4.2'
+gem 'carrierwave',             '0.10.0'
+gem 'mini_magick',             '3.8.0'
+gem 'fog',                     '1.32.0'
+gem 'twilio-ruby', '~> 4.1.0'
+gem 'normalize-rails'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
   gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
+  gem 'rails-erd'
+  gem 'magic_encoding', '~> 0.0.2'
+  gem 'htmlbeautifier'
 end
 
 group :test do

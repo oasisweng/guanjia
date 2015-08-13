@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Guanjia</title>
+  <title><%= yield :title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<nav>
+  <%= link_to "用户", users_path %>
+  <%= link_to "订单", orders_path %>
+  
+</nav>
+<%= render 'shared/flash_messages' %>
 <%= yield %>
-
+<%= debug(params) if Rails.env.development? %>
 </body>
 </html>

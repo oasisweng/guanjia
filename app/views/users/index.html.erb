@@ -1,0 +1,14 @@
+<% provide(:title, "users#index") %>
+<% if params["status"] %>
+  <h1>当前只显示员工, 共有<%= @users_count%>名员工</h1>
+<% else %>
+  <h1>当前只显示客户， 共有<%= @users_count %>名客户</h1>
+<% end %>
+<%= link_to "只显示客户",users_path %>
+<%= link_to "只显示员工",users_path(status:"Staffs") %>
+<br>
+<h2><%= link_to "添加新用户", new_user_path %></h2>
+<%= will_paginate %>
+<div id="users-div">
+  <%= render 'users' %>
+</div>

@@ -1,0 +1,6 @@
+<% @user.contacts.each do |contact| %>
+  <div id="user-<%=@user.id%>-contact-<%=contact.id%>">
+    <%= render 'contact', contact:contact %>
+  </div>
+  <br>
+<% end %>

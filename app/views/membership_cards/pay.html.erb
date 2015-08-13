@@ -1,0 +1,9 @@
+<% provide(:title, '扣款') %>
+<h1>This form is for <%= render 'users/user', user:@card.user %></h1>
+<%= form_tag(controller: "membership_cards", action:"pay", remote:true) do %>
+<%= hidden_field_tag :id, :value => @card.id %>
+<div><%= label_tag :payment %></div>
+<div><%= text_field_tag :payment, nil, :placeholder => "enter a number", class: 'form-control' %></div>
+<%= submit_tag "Pay" %>
+<% end %>
+<h1><%= link_to "回到用户列表",users_path %></h1>
