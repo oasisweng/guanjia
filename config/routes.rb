@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'users#index'
+  resources :orders
   resources :users, except: :destroy do
     member do 
       get 'toggle_suspension'

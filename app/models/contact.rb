@@ -1,6 +1,7 @@
 # -*- encoding : utf-8 -*-
 class Contact < ActiveRecord::Base
   belongs_to :user
+  has_many :orders
 
   validates :full_name, presence: true, 
                     length: {maximum: 50}

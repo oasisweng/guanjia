@@ -2,16 +2,17 @@ class OrdersController < ApplicationController
   respond_to :html, :json
 
   def index
-    @orders = Order.all.paginate(page: page)
+    @orders = Order.all.paginate(page: params[:page])
     @orders_count = Order.count
     respond_with(@orders)
   end
 
   def new
+    @order = Order.new
   end
 
   def create
-
+    @order = Order.new(order_params)
   end
 
   def edit
@@ -29,9 +30,8 @@ class OrdersController < ApplicationController
 
   private
 
-  def user_params
-    params.require(:user).permit(:full_name,:phone_no,:wechat_id,:status,:store_id,:male,
-                                 membership_card_attributes: [:balance, :level_id])
+  def order_params
+    params.require(:order).permit(:message, :expedited, :pickup_datetime, :user_id, :store_id, :contact_id)
   end
  
 end
