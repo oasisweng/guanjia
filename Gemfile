@@ -20,6 +20,7 @@ gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.32.0'
 gem 'twilio-ruby', '~> 4.1.0'
 gem 'normalize-rails'
+gem 'roo'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
