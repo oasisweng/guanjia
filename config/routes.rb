@@ -7,19 +7,23 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'users#index'
   resources :orders
+  resources :items
   resources :users, except: :destroy do
     member do 
       get 'toggle_suspension'
       post 'toggle_suspension'
       patch 'toggle_suspension'
+      get 'topup' => "membership_cards#prepare_topup"
+      post 'topup' => "membership_cards#topup"
+      get 'pay' => "membership_cards#prepare_pay"
+      post 'pay' => "membership_cards#pay"
     end
 
     resources :contacts, shallow: true
   end
-  get 'users/:id/topup' => "membership_cards#prepare_topup"
-  post 'users/:id/topup' => "membership_cards#topup", as: "user_topup"
-  get 'users/:id/pay' => "membership_cards#prepare_pay"
-  post 'users/:id/pay' => "membership_cards#pay", as:"user_pay"
+  
+  
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
