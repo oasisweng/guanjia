@@ -8,6 +8,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
+#Item Type
+ItemType.create!(name: "Clothing")
+ItemType.create!(name: "Furniture")
+ItemType.create!(name: "Shoes")
+ItemType.create!(name: "Bags")
+
 #Levels
 Level.create!(discount: 1.0,
               name: "Number1")
